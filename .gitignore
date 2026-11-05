@@ -36,3 +36,6 @@ docs/audit_report_v2.py
 docs/inspect_two.py
 docs/rewrite_er.py
 .dsh-office-*/
+docs/live-*.png
+e2e/site-preview*.mjs
+e2e/pages-live-check.mjs

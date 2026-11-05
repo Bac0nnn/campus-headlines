@@ -9,6 +9,10 @@
 - 环境：JDK 17 / Maven 3.6+ / Node 18+ / MySQL 8.0
 - 角色：普通用户（浏览）、作者（发布/素材）、审核员（审核）
 
+> **在线项目主页**：https://bac0nnn.github.io/campus-headlines/  
+> **GitHub 仓库**：https://github.com/Bac0nnn/campus-headlines  
+> GitHub Pages 展示项目介绍、运行截图、技术架构与文档；完整功能需在本地启动后端与 MySQL。
+
 ---
 
 ## 一、三端角色与功能
