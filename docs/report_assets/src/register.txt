@@ -1,0 +1,15 @@
+@Transactional
+public LoginVO register(RegisterRequest request) {
+    ApUser user = new ApUser();
+    user.setPhone(request.getPhone());
+    user.setRole(request.getRole());          // 0 普通 / 1 作者 / 2 审核员
+    user.setPassword(passwordEncoder.encode(request.getPassword()));
+    apUserMapper.insert(user);
+    if (request.getRole() > 0) {
+        WmUser wm = new WmUser();
+        wm.setApUserId(user.getId());
+        wm.setRole(request.getRole() == 2 ? 1 : 0);
+        wmUserMapper.insert(wm);
+    }
+    return buildLoginVO(user, true);
+}

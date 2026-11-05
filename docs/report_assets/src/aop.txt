@@ -1,0 +1,16 @@
+@Aspect
+@Component
+public class LogAspect {
+    @Pointcut("execution(public * com.campus.headlines.controller..*.*(..))")
+    public void controllerPointcut() {}
+
+    @Around("controllerPointcut()")
+    public Object around(ProceedingJoinPoint pjp) throws Throwable {
+        long start = System.currentTimeMillis();
+        Object result = pjp.proceed();
+        log.info("[AOP] {} 耗时 {} ms",
+                pjp.getSignature().toShortString(),
+                System.currentTimeMillis() - start);
+        return result;
+    }
+}

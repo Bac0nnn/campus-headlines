@@ -1,0 +1,58 @@
+server:
+  port: ${BACKEND_PORT:8080}
+  servlet:
+    context-path: /
+  tomcat:
+    uri-encoding: UTF-8
+
+spring:
+  application:
+    name: campus-headlines
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://${DB_HOST:127.0.0.1}:${DB_PORT:3306}/${DB_NAME:campus_headlines}?useUnicode=true&characterEncoding=utf8&useSSL=false&serverTimezone=Asia/Shanghai&allowPublicKeyRetrieval=true&rewriteBatchedStatements=true
+    username: ${DB_USER:root}
+    password: ${DB_PASSWORD:123456}
+    hikari:
+      maximum-pool-size: 10
+      minimum-idle: 2
+      connection-timeout: 30000
+  servlet:
+    multipart:
+      max-file-size: 10MB
+      max-request-size: 20MB
+  jackson:
+    time-zone: GMT+8
+    default-property-inclusion: non_null
+  web:
+    resources:
+      static-locations: classpath:/static/
+  mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher
+
+mybatis-plus:
+  configuration:
+    map-underscore-to-camel-case: true
+    log-impl: org.apache.ibatis.logging.slf4j.Slf4jImpl
+  global-config:
+    banner: false
+    db-config:
+      id-type: auto
+
+campus:
+  jwt:
+    secret: campus-headlines-secret-key-please-change-in-prod-2026
+    expire-days: 7
+  upload:
+    dir: ${UPLOAD_DIR:./data/uploads}
+  demo:
+    auto-audit: ${AUTO_AUDIT:false}
+
+logging:
+  level:
+    root: info
+    com.campus.headlines: debug
+    com.campus.headlines.mapper: debug
+  pattern:
+    console: "%d{HH:mm:ss.SSS} %-5level [%thread] %logger{36} - %msg%n"

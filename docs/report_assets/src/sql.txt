@@ -1,0 +1,16 @@
+<select id="selectMediaNews" resultType="...entity.News">
+    SELECT id, wm_user_id, channel_id, title, cover_images, status
+    FROM news
+    <where>
+        <if test="q.wmUserId != null">AND wm_user_id = #{q.wmUserId}</if>
+        <if test="q.status != null">AND status = #{q.status}</if>
+        <if test="q.keyword != null and q.keyword != ''">
+            AND title LIKE CONCAT('%', #{q.keyword}, '%')
+        </if>
+        <if test="q.startDate != null">AND create_time &gt;= #{q.startDate}</if>
+    </where>
+    <choose>
+        <when test="q.sort == 'hot'">ORDER BY views DESC</when>
+        <otherwise>ORDER BY update_time DESC</otherwise>
+    </choose>
+</select>

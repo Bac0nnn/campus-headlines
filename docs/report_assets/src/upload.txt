@@ -1,0 +1,13 @@
+public Material upload(MultipartFile file) {
+    WmUser author = requireAuthor();
+    byte[] bytes = file.getBytes();
+    BufferedImage image = ImageIO.read(new ByteArrayInputStream(bytes));
+    Material material = new Material();
+    material.setWmUserId(author.getId());
+    material.setContentType(file.getContentType());
+    material.setData(bytes);                   // BLOB 入库
+    materialMapper.insert(material);
+    material.setUrl("/api/files/material/" + material.getId());
+    materialMapper.updateById(material);
+    return material;
+}

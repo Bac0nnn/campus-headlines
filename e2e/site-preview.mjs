@@ -1,0 +1,13 @@
+import { chromium } from 'playwright';
+const browser = await chromium.launch({ headless: true, channel: 'msedge' });
+const page = await browser.newPage({ viewport: { width: 1440, height: 950 }, deviceScaleFactor: 1 });
+const errors = [];
+page.on('pageerror', e => errors.push(e.message));
+page.on('console', m => { if (m.type() === 'error') errors.push(m.text()); });
+await page.goto('http://127.0.0.1:8099/', { waitUntil: 'networkidle' });
+await page.waitForTimeout(1200);
+const broken = await page.$$eval('img', imgs => imgs.filter(i => !i.complete || i.naturalWidth === 0).map(i => i.getAttribute('src')));
+console.log(JSON.stringify({ title: await page.title(), errors, broken, height: await page.evaluate(() => document.body.scrollHeight) }));
+await page.screenshot({ path: 'F:/IDEA/YXP-QM/campus-headlines/docs/site-preview-top.png' });
+await page.screenshot({ path: 'F:/IDEA/YXP-QM/campus-headlines/docs/site-preview-full.png', fullPage: true });
+await browser.close();

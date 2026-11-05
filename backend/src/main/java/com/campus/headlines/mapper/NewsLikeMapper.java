@@ -1,0 +1,9 @@
+package com.campus.headlines.mapper;
+
+import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.campus.headlines.entity.NewsLike;
+import org.apache.ibatis.annotations.Mapper;
+
+@Mapper
+public interface NewsLikeMapper extends BaseMapper<NewsLike> {
+}

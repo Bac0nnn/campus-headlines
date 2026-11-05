@@ -1,0 +1,61 @@
+校园头条系统 数据库说明
+========================================
+
+一、运行环境
+  MySQL 版本：8.0.46
+  安装目录：F:\MySQL\8.0\mysql-8.0.46-winx64
+  服务名称：MySQL80（Windows 服务，自动启动）
+  数据目录：F:\MySQL\8.0\mysql-8.0.46-winx64\data
+
+二、DBeaver 连接参数
+  主机：127.0.0.1（或 localhost）
+  端口：3306
+  用户名：root
+  密码：123456
+  数据库：campus_headlines
+  字符集：utf8mb4
+
+  DBeaver 操作步骤：
+  1. 新建数据库连接 → 选择 MySQL → 下一步；
+  2. 首次连接按提示下载 MySQL 驱动；
+  3. 填写主机、端口、用户名、密码，数据库填 campus_headlines；
+  4. 点击“测试连接”，成功后完成；
+  5. 右键连接 → 编辑连接 → MySQL → 勾选“显示所有数据库”；
+  6. 展开 campus_headlines，可看到 9 张表及演示数据。
+
+  若提示 Public Key Retrieval is not allowed：
+  在“驱动属性”中设置 allowPublicKeyRetrieval = true，或使用 useSSL = false。
+
+三、SQL 文件说明
+  campus_headlines.sql  完整数据库备份（建库、建表、数据、外键、图片二进制），可直接导入恢复
+  schema.sql            建库建表脚本（含主键、索引、12 个外键）
+  data.sql              种子数据（频道、16 个用户、作者/审核员、素材、24 篇文章、评论、点赞、审核记录）
+
+  导入完整备份：
+    mysql -uroot -p123456 --default-character-set=utf8mb4 < campus_headlines.sql
+
+  重新初始化：
+    mysql -uroot -p123456 --default-character-set=utf8mb4 < schema.sql
+    mysql -uroot -p123456 --default-character-set=utf8mb4 < data.sql
+
+四、数据表（9 张）
+  ap_user         统一用户表（role：0 普通用户、1 作者、2 审核员；avatar_data 存头像二进制）
+  wm_user         作者/审核员业务身份（ap_user_id 外键、role：0 作者、1 审核员）
+  channel         频道
+  material        素材/封面（data 字段存图片二进制，content_type 为 MIME）
+  news            文章（cover_images 存素材接口地址，status：0 草稿、1 待审核、2 通过、3 驳回）
+  news_material   文章素材关联
+  news_like       点赞
+  news_comment    评论
+  audit_record    审核记录（审核人、结果、意见、时间）
+
+五、演示账号
+  普通用户：13800138000 / 123456（验证码同为 123456）
+  作者：    13900000002 / 123456（计算机学院）
+  审核员：  13900000001 / 123456（校媒中心）
+  兼容旧账号：admin / 123456（审核员），cs / photo / job / 123456（作者）
+
+六、图片数据
+  头像：ap_user.avatar_data（LONGBLOB），读取接口 GET /api/auth/avatar/{id}
+  封面：material.data（LONGBLOB），读取接口 GET /api/files/material/{id}
+  新闻 cover_images 保存素材接口地址，因此重新登录后仍可读取同一张封面。

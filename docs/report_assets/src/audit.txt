@@ -1,0 +1,16 @@
+@Transactional
+public News review(Long id, AuditReviewRequest request) {
+    WmUser reviewer = requireReviewer();
+    News news = newsMapper.selectById(id);
+    if (news == null || news.getStatus() != 1) {
+        throw new BusinessException("该文章不在待审核状态");
+    }
+    boolean pass = Boolean.TRUE.equals(request.getPass());
+    news.setStatus(pass ? 2 : 3);
+    newsMapper.updateById(news);
+    AuditRecord record = new AuditRecord();
+    record.setNewsId(id);
+    record.setAuditorId(reviewer.getId());
+    auditRecordMapper.insert(record);
+    return news;
+}

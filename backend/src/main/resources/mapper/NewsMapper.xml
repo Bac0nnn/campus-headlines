@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.campus.headlines.mapper.NewsMapper">
+
+    <sql id="Base_Column_List">
+        id, wm_user_id, channel_id, title, content, cover_type, cover_images, labels,
+        status, is_top, publish_time, views, likes, comments, create_time, update_time
+    </sql>
+
+    <!-- 动态 SQL：where + if + choose，供自媒体内容列表与审核列表复用 -->
+    <select id="selectMediaNews" resultType="com.campus.headlines.entity.News">
+        SELECT
+        <include refid="Base_Column_List"/>
+        FROM news
+        <where>
+            <if test="q.wmUserId != null">
+                AND wm_user_id = #{q.wmUserId}
+            </if>
+            <if test="q.status != null">
+                AND status = #{q.status}
+            </if>
+            <if test="q.channelId != null">
+                AND channel_id = #{q.channelId}
+            </if>
+            <if test="q.keyword != null and q.keyword != ''">
+                AND title LIKE CONCAT('%', #{q.keyword}, '%')
+            </if>
+            <if test="q.startDate != null">
+                AND create_time &gt;= #{q.startDate}
+            </if>
+            <if test="q.endDate != null">
+                AND create_time &lt;= #{q.endDate}
+            </if>
+        </where>
+        <choose>
+            <when test="q.sort == 'hot'">
+                ORDER BY views DESC, id DESC
+            </when>
+            <otherwise>
+                ORDER BY update_time DESC, id DESC
+            </otherwise>
+        </choose>
+    </select>
+
+    <!-- foreach：统计多个频道的已发布文章数 -->
+    <select id="countByChannelIds" resultType="java.util.Map">
+        SELECT channel_id AS channelId, COUNT(*) AS total
+        FROM news
+        WHERE status = 2
+        AND channel_id IN
+        <foreach collection="ids" item="id" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+        GROUP BY channel_id
+    </select>
+
+</mapper>

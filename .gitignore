@@ -1,0 +1,38 @@
+# Java
+backend/target/
+*.class
+*.jar
+
+# Node
+frontend/node_modules/
+frontend/dist/
+
+# 运行产物
+logs/
+.run/
+backend/data/
+backend/logs/
+.tmp/
+
+# 环境与IDE
+.env
+.idea/
+*.iml
+.vscode/
+.DS_Store
+
+e2e/node_modules/
+e2e/fixtures/
+
+# 打包与本地预览
+package/
+docs/report-render*/
+docs/second-render/
+docs/report-v2-*/
+docs/site-*.png
+docs/*_meta.json
+docs/课程设计报告_*.docx
+docs/audit_report_v2.py
+docs/inspect_two.py
+docs/rewrite_er.py
+.dsh-office-*/

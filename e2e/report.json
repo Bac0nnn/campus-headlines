@@ -1,0 +1,85 @@
+{
+  "base": "http://127.0.0.1:5173",
+  "time": "2026-10-27T02:42:19.107Z",
+  "results": [
+    {
+      "name": "01-media-login",
+      "size": 425710,
+      "step": "01 作者/审核员登录页"
+    },
+    {
+      "name": "02-register-role",
+      "size": 215888,
+      "step": "02 三端注册页"
+    },
+    {
+      "name": "03-author-material",
+      "size": 53281,
+      "step": "03 注册作者并进入创作中心"
+    },
+    {
+      "name": "04-author-uploaded",
+      "size": 61418,
+      "step": "04 上传封面图片（入库）"
+    },
+    {
+      "name": "05-publish-db-cover",
+      "size": 113941,
+      "step": "05 发布文章（封面来自数据库）"
+    },
+    {
+      "name": "06-content-pending",
+      "size": 81095,
+      "step": "06 提交审核"
+    },
+    {
+      "name": "07-audit-pending",
+      "size": 160130,
+      "step": "07 切换到审核员"
+    },
+    {
+      "name": "08-audit-detail",
+      "size": 151684,
+      "step": "08 审核员查看全文"
+    },
+    {
+      "name": "09-audit-passed",
+      "size": 228503,
+      "step": "09 审核通过"
+    },
+    {
+      "name": "10-reader-login",
+      "size": 206438,
+      "step": "10 普通用户登录"
+    },
+    {
+      "name": "11-reader-home",
+      "size": 651574,
+      "step": "10 普通用户登录"
+    },
+    {
+      "name": "12-reader-detail",
+      "size": 272180,
+      "step": "11 查看数据库封面文章"
+    },
+    {
+      "name": "13-avatar-dialog",
+      "size": 167065,
+      "step": "12 普通用户上传头像"
+    },
+    {
+      "name": "14-profile-avatar",
+      "size": 152294,
+      "step": "12 普通用户上传头像"
+    },
+    {
+      "name": "15-mobile-home",
+      "size": 360571
+    },
+    {
+      "name": "16-mobile-detail",
+      "size": 237796
+    }
+  ],
+  "problems": []
+}

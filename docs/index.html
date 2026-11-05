@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>校园头条 · Campus Headlines | SSM + Vue 3 校园资讯系统</title>
+  <meta name="description" content="校园头条：基于 SSM、Vue 3、MySQL 的校园新闻资讯与内容审核系统。三端角色、图片入库、审核闭环。" />
+  <meta name="theme-color" content="#0e2145" />
+  <meta property="og:title" content="校园头条 · Campus Headlines" />
+  <meta property="og:description" content="SSM + Vue 3 + MySQL 校园新闻资讯与内容审核系统，三端角色、图片入库、审核闭环。" />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="screenshots/11-reader-home.png" />
+  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+  <link rel="stylesheet" href="site.css" />
+</head>
+<body>
+  <div class="scroll-progress" id="progress"></div>
+
+  <header class="nav" id="nav">
+    <div class="nav-inner">
+      <a class="brand" href="#top">
+        <span class="brand-mark">校</span>
+        <span class="brand-text">校园头条<small>CAMPUS HEADLINES</small></span>
+      </a>
+      <nav class="nav-links">
+        <a href="#features">功能</a>
+        <a href="#flow">流程</a>
+        <a href="#gallery">截图</a>
+        <a href="#tech">技术</a>
+        <a href="#run">运行</a>
+        <a href="#docs">文档</a>
+      </nav>
+      <a class="gh-btn" href="https://github.com/Bac0nnn/campus-headlines" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 .5C5.7.5.5 5.7.5 12c0 5.1 3.3 9.4 7.9 10.9.6.1.8-.3.8-.6v-2.2c-3.2.7-3.9-1.4-3.9-1.4-.5-1.3-1.3-1.7-1.3-1.7-1.1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1.1 1.8 2.8 1.3 3.5 1 .1-.8.4-1.3.8-1.6-2.6-.3-5.3-1.3-5.3-5.7 0-1.3.5-2.3 1.2-3.1-.1-.3-.5-1.5.1-3.1 0 0 1-.3 3.2 1.2a11 11 0 0 1 5.8 0c2.2-1.5 3.2-1.2 3.2-1.2.6 1.6.2 2.8.1 3.1.8.8 1.2 1.8 1.2 3.1 0 4.4-2.7 5.4-5.3 5.7.4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.6 4.6-1.5 7.9-5.8 7.9-10.9C23.5 5.7 18.3.5 12 .5z"/></svg>
+        GitHub
+      </a>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero" id="top">
+      <div class="hero-bg"></div>
+      <div class="hero-inner">
+        <div class="hero-copy reveal">
+          <div class="eyebrow"><span></span> J2EE 应用开发 · 课程设计</div>
+          <h1>校园头条<span>Campus Headlines</span></h1>
+          <p class="lead">面向高校师生的校园资讯与内容审核平台。作者生产内容，审核员把关，普通用户浏览，形成完整的校园新闻业务闭环。</p>
+          <div class="tags">
+            <span>SSM</span><span>Vue 3</span><span>MySQL 8.0</span><span>JWT</span><span>Element Plus</span>
+          </div>
+          <div class="hero-actions">
+            <a class="btn primary" href="#gallery">浏览运行截图</a>
+            <a class="btn ghost" href="https://github.com/Bac0nnn/campus-headlines" target="_blank" rel="noopener">查看源码</a>
+            <a class="btn text" href="#run">本地运行 →</a>
+          </div>
+          <div class="hero-meta">
+            <div><strong>3</strong><span>端角色</span></div>
+            <div><strong>9</strong><span>数据表</span></div>
+            <div><strong>12</strong><span>外键约束</span></div>
+            <div><strong>16</strong><span>运行截图</span></div>
+          </div>
+        </div>
+
+        <div class="hero-visual reveal">
+          <div class="browser">
+            <div class="browser-bar">
+              <span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span>
+              <div class="url">campus-headlines.local</div>
+            </div>
+            <img src="screenshots/11-reader-home.png" alt="校园头条用户端首页" />
+          </div>
+          <div class="phone">
+            <img src="screenshots/15-mobile-home.png" alt="校园头条移动端首页" />
+          </div>
+          <div class="float-note">
+            <span class="pulse"></span>
+            <div><strong>图片入库</strong><small>头像 / 封面存入 MySQL BLOB</small></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="stats-strip">
+      <div class="wrap stats-grid">
+        <div class="stat reveal"><strong>09</strong><span>核心数据表</span><small>用户 / 媒体 / 文章 / 素材 / 审核</small></div>
+        <div class="stat reveal"><strong>12</strong><span>外键约束</span><small>保证内容与账号关系完整</small></div>
+        <div class="stat reveal"><strong>05</strong><span>核心代码段</span><small>注册 / 上传 / 审核 / AOP / 动态 SQL</small></div>
+        <div class="stat reveal"><strong>00</strong><span>控制台错误</span><small>Playwright 真实浏览器验证</small></div>
+      </div>
+    </section>
+
+    <section class="section" id="features">
+      <div class="wrap">
+        <div class="section-head reveal">
+          <div class="eyebrow"><span></span> 系统能力</div>
+          <h2>一套系统，三种角色，一条内容闭环</h2>
+          <p>从素材上传到审核发布，再到用户端浏览，所有环节都在同一套权限体系内完成。</p>
+        </div>
+
+        <div class="feature-grid">
+          <article class="feature reveal">
+            <div class="ico blue"><svg viewBox="0 0 24 24"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2M9 11a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM22 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
+            <h3>三端统一账号</h3>
+            <p>普通用户、作者、审核员共用 ap_user，通过 role 区分权限，作者与审核员关联 wm_user 业务身份。</p>
+          </article>
+          <article class="feature reveal">
+            <div class="ico green"><svg viewBox="0 0 24 24"><path d="M12 20h9M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg></div>
+            <h3>作者创作台</h3>
+            <p>素材管理、富文本编辑、标签与频道、单图/三图/无图封面，支持草稿与提交审核。</p>
+          </article>
+          <article class="feature reveal">
+            <div class="ico amber"><svg viewBox="0 0 24 24"><path d="M9 11l3 3L22 4M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg></div>
+            <h3>审核工作台</h3>
+            <p>待审 / 已通过 / 已驳回三栏，查看全文、通过发布或驳回填写意见，审核记录自动落库。</p>
+          </article>
+          <article class="feature reveal">
+            <div class="ico purple"><svg viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h10M7 4v16M17 4v16"/></svg></div>
+            <h3>图片真正入库</h3>
+            <p>头像写入 ap_user.avatar_data，封面写入 material.data，重新登录后仍从数据库读取同一张图。</p>
+          </article>
+          <article class="feature reveal">
+            <div class="ico red"><svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+            <h3>权限双重校验</h3>
+            <p>JWT 携带 userRole / wmUserId，拦截器与 Service 层双重校验；路由守卫限制越权访问。</p>
+          </article>
+          <article class="feature reveal">
+            <div class="ico cyan"><svg viewBox="0 0 24 24"><path d="M8 9l3 3-3 3M13 15h3M4 4h16v16H4z"/></svg></div>
+            <h3>SSM 技术实践</h3>
+            <p>Spring IoC/AOP、声明式事务、Spring MVC 拦截器、文件上传、MyBatis 动态 SQL 与 MyBatis-Plus 分页。</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section roles-section" id="roles">
+      <div class="wrap">
+        <div class="section-head reveal">
+          <div class="eyebrow"><span></span> 演示账号</div>
+          <h2>三种角色，三种工作台</h2>
+          <p>打开系统后可直接使用以下账号体验完整流程。</p>
+        </div>
+        <div class="role-grid">
+          <article class="role-card reveal">
+            <div class="role-top"><span class="role-badge reader">普通用户</span><small>role = 0</small></div>
+            <h3>浏览与互动</h3>
+            <p>频道、搜索、文章详情、点赞评论、个人资料与头像上传。</p>
+            <div class="account"><span>13800138000</span><b>123456</b></div>
+          </article>
+          <article class="role-card reveal featured">
+            <div class="role-top"><span class="role-badge author">作者</span><small>role = 1</small></div>
+            <h3>生产校园内容</h3>
+            <p>上传封面、富文本发文、存草稿、提交审核、管理自己的文章与素材。</p>
+            <div class="account"><span>13900000002</span><b>123456</b></div>
+          </article>
+          <article class="role-card reveal">
+            <div class="role-top"><span class="role-badge reviewer">审核员</span><small>role = 2</small></div>
+            <h3>把关内容质量</h3>
+            <p>查看待审全文、通过发布、驳回填写意见、查看审核记录。</p>
+            <div class="account"><span>13900000001</span><b>123456</b></div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section flow-section" id="flow">
+      <div class="wrap flow-wrap">
+        <div class="flow-copy reveal">
+          <div class="eyebrow"><span></span> 核心流程</div>
+          <h2>作者发文 → 审核员审核 → 用户浏览</h2>
+          <p>文章状态从草稿、待审核、通过到驳回，所有状态变更都有明确的角色与事务边界。</p>
+          <ol class="steps">
+            <li><b>01</b><div><strong>上传封面</strong><span>图片二进制写入 material.data</span></div></li>
+            <li><b>02</b><div><strong>发布并提交</strong><span>news.status = 1，进入待审列表</span></div></li>
+            <li><b>03</b><div><strong>审核通过</strong><span>status = 2，写入 publish_time 与审核记录</span></div></li>
+            <li><b>04</b><div><strong>用户浏览</strong><span>首页与详情从数据库读取封面</span></div></li>
+          </ol>
+        </div>
+        <figure class="flow-figure reveal">
+          <img src="report_assets/flowchart.png" alt="校园头条核心业务流程图" loading="lazy" />
+          <figcaption>图 1  校园头条核心业务流程图</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section class="section" id="gallery">
+      <div class="wrap">
+        <div class="section-head reveal">
+          <div class="eyebrow"><span></span> 运行截图</div>
+          <h2>真实浏览器，完整跑通三端流程</h2>
+          <p>Playwright 驱动 Edge 自动截图，覆盖桌面端 1440×900 与移动端 390×844。</p>
+        </div>
+        <div class="gallery">
+          <a class="shot reveal" href="screenshots/01-media-login.png" data-caption="图 2-1 作者 / 审核员登录页"><img src="screenshots/01-media-login.png" alt="作者审核员登录" loading="lazy" /><span>作者 / 审核员登录</span></a>
+          <a class="shot reveal" href="screenshots/02-register-role.png" data-caption="图 2-2 三端统一注册（角色选择）"><img src="screenshots/02-register-role.png" alt="三端注册" loading="lazy" /><span>三端统一注册</span></a>
+          <a class="shot reveal" href="screenshots/03-author-material.png" data-caption="图 2-3 作者素材管理"><img src="screenshots/03-author-material.png" alt="素材管理" loading="lazy" /><span>作者素材管理</span></a>
+          <a class="shot reveal" href="screenshots/04-author-uploaded.png" data-caption="图 2-4 上传封面图片（保存到数据库）"><img src="screenshots/04-author-uploaded.png" alt="上传封面" loading="lazy" /><span>封面上传入库</span></a>
+          <a class="shot reveal" href="screenshots/05-publish-db-cover.png" data-caption="图 2-5 发布文章并使用数据库封面"><img src="screenshots/05-publish-db-cover.png" alt="发布文章" loading="lazy" /><span>发布文章</span></a>
+          <a class="shot reveal" href="screenshots/06-content-pending.png" data-caption="图 2-6 提交审核后的待审核列表"><img src="screenshots/06-content-pending.png" alt="待审核列表" loading="lazy" /><span>提交审核</span></a>
+          <a class="shot reveal" href="screenshots/07-audit-pending.png" data-caption="图 2-7 审核工作台"><img src="screenshots/07-audit-pending.png" alt="审核工作台" loading="lazy" /><span>审核工作台</span></a>
+          <a class="shot reveal" href="screenshots/08-audit-detail.png" data-caption="图 2-8 审核员查看稿件全文"><img src="screenshots/08-audit-detail.png" alt="查看全文" loading="lazy" /><span>查看稿件全文</span></a>
+          <a class="shot reveal" href="screenshots/09-audit-passed.png" data-caption="图 2-9 审核通过后进入已通过列表"><img src="screenshots/09-audit-passed.png" alt="审核通过" loading="lazy" /><span>审核通过</span></a>
+          <a class="shot reveal" href="screenshots/10-reader-login.png" data-caption="图 2-10 普通用户密码登录"><img src="screenshots/10-reader-login.png" alt="用户登录" loading="lazy" /><span>普通用户登录</span></a>
+          <a class="shot reveal" href="screenshots/11-reader-home.png" data-caption="图 2-11 用户端首页（封面来自数据库）"><img src="screenshots/11-reader-home.png" alt="用户端首页" loading="lazy" /><span>用户端首页</span></a>
+          <a class="shot reveal" href="screenshots/12-reader-detail.png" data-caption="图 2-12 文章详情（封面从数据库读取）"><img src="screenshots/12-reader-detail.png" alt="文章详情" loading="lazy" /><span>文章详情</span></a>
+          <a class="shot reveal" href="screenshots/13-avatar-dialog.png" data-caption="图 2-13 上传头像对话框"><img src="screenshots/13-avatar-dialog.png" alt="头像上传" loading="lazy" /><span>头像上传</span></a>
+          <a class="shot reveal" href="screenshots/14-profile-avatar.png" data-caption="图 2-14 个人中心（头像已入库）"><img src="screenshots/14-profile-avatar.png" alt="个人中心" loading="lazy" /><span>个人中心</span></a>
+          <a class="shot reveal" href="screenshots/15-mobile-home.png" data-caption="图 2-15 移动端首页"><img src="screenshots/15-mobile-home.png" alt="移动端首页" loading="lazy" /><span>移动端首页</span></a>
+          <a class="shot reveal" href="screenshots/16-mobile-detail.png" data-caption="图 2-16 移动端文章详情"><img src="screenshots/16-mobile-detail.png" alt="移动端详情" loading="lazy" /><span>移动端详情</span></a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section tech-section" id="tech">
+      <div class="wrap">
+        <div class="section-head reveal">
+          <div class="eyebrow"><span></span> 技术架构</div>
+          <h2>前后端分离，SSM 分层落地</h2>
+          <p>Spring 负责 Bean 与事务，Spring MVC 负责接口与拦截器，MyBatis-Plus 负责数据访问，MySQL 保存业务与图片二进制。</p>
+        </div>
+        <div class="tech-layout">
+          <div class="arch reveal">
+            <div class="arch-layer"><span>浏览器</span><b>Vue 3 + Vite + Element Plus</b><small>Axios / JWT / 路由守卫</small></div>
+            <i></i>
+            <div class="arch-layer"><span>表现层</span><b>Spring MVC</b><small>REST / 参数校验 / 全局异常 / 拦截器</small></div>
+            <i></i>
+            <div class="arch-layer"><span>业务层</span><b>Spring Service</b><small>IoC / AOP / @Transactional</small></div>
+            <i></i>
+            <div class="arch-layer"><span>持久层</span><b>MyBatis-Plus + XML</b><small>CRUD / 分页 / 动态 SQL</small></div>
+            <i></i>
+            <div class="arch-layer db"><span>数据层</span><b>MySQL 8.0</b><small>业务表 + 头像 / 封面 LONGBLOB</small></div>
+          </div>
+          <div class="stack reveal">
+            <div class="stack-row"><span>后端框架</span><b>SSM（Spring 5.3 + Spring MVC 5.3）</b></div>
+            <div class="stack-row"><span>持久层</span><b>MyBatis-Plus 3.5.3.2 / MyBatis 3.5.13</b></div>
+            <div class="stack-row"><span>数据库</span><b>MySQL 8.0.46</b></div>
+            <div class="stack-row"><span>前端</span><b>Vue 3.4 + Vite 5 + Pinia</b></div>
+            <div class="stack-row"><span>UI / 编辑器</span><b>Element Plus 2.8 + wangEditor 5</b></div>
+            <div class="stack-row"><span>鉴权</span><b>JWT 0.11.5 + BCrypt</b></div>
+            <div class="stack-row"><span>运行环境</span><b>JDK 17 / Node 18+</b></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section db-section" id="database">
+      <div class="wrap db-wrap">
+        <div class="db-copy reveal">
+          <div class="eyebrow"><span></span> 数据库设计</div>
+          <h2>9 张表，12 个外键</h2>
+          <p>ap_user 统一账号，wm_user 承载作者/审核员业务身份；news、material、audit_record 等表通过外键形成完整内容链路。</p>
+          <div class="db-chips">
+            <span>ap_user</span><span>wm_user</span><span>news</span><span>material</span><span>channel</span><span>audit_record</span>
+          </div>
+          <a class="btn ghost dark" href="概念E-R图_内容简洁版.png" target="_blank">查看完整 E-R 图 ↗</a>
+        </div>
+        <figure class="er-figure reveal">
+          <img src="概念E-R图_内容简洁版.png" alt="校园头条核心业务 E-R 图" loading="lazy" />
+          <figcaption>概念 E-R 图 · 核心业务</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section class="section run-section" id="run">
+      <div class="wrap run-wrap">
+        <div class="run-copy reveal">
+          <div class="eyebrow"><span></span> 本地运行</div>
+          <h2>三步启动完整系统</h2>
+          <p>需要 JDK 17、Maven、MySQL 8.0、Node 18+。启动前请确认 MySQL80 服务已运行，root 密码与 <code>.env</code> 一致。</p>
+          <div class="run-list">
+            <div><b>01</b><span>克隆仓库</span></div>
+            <div><b>02</b><span>双击 <code>scripts\start.bat</code></span></div>
+            <div><b>03</b><span>访问 <code>http://127.0.0.1:5173</code></span></div>
+          </div>
+          <div class="notice">GitHub Pages 展示项目主页与运行截图；完整功能需要本地后端与 MySQL 数据库。</div>
+        </div>
+        <div class="code-card reveal">
+          <div class="code-head"><span>PowerShell</span><b>quick start</b></div>
+          <pre><code>git clone https://github.com/Bac0nnn/campus-headlines.git
+cd campus-headlines
+copy .env.example .env
+
+# 启动 MySQL80 后
+scripts\start.bat
+
+# 浏览器打开
+http://127.0.0.1:5173</code></pre>
+          <div class="code-foot">停止：<code>scripts\stop.ps1</code></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section docs-section" id="docs">
+      <div class="wrap">
+        <div class="section-head reveal">
+          <div class="eyebrow"><span></span> 项目文档</div>
+          <h2>报告、部署文档与接口说明</h2>
+        </div>
+        <div class="doc-grid">
+          <a class="doc-card reveal" href="《J2EE应用开发》课程设计报告（俞鑫培）.docx">
+            <span class="doc-ico">DOCX</span>
+            <div><h3>课程设计报告</h3><p>功能列表、运行截图、SSM 说明、流程图、E-R 图、核心代码与总结。</p></div>
+            <b>下载 →</b>
+          </a>
+          <a class="doc-card reveal" href="校园头条部署文档.docx">
+            <span class="doc-ico">DOCX</span>
+            <div><h3>部署文档</h3><p>环境准备、MySQL 配置、DBeaver 连接、启动与常见问题。</p></div>
+            <b>下载 →</b>
+          </a>
+          <a class="doc-card reveal" href="接口文档.md">
+            <span class="doc-ico">MD</span>
+            <div><h3>接口文档</h3><p>三端认证、资料、素材、文章、审核、图片与用户端接口说明。</p></div>
+            <b>查看 →</b>
+          </a>
+          <a class="doc-card reveal" href="https://github.com/Bac0nnn/campus-headlines/tree/main/database">
+            <span class="doc-ico">SQL</span>
+            <div><h3>数据库脚本</h3><p>schema.sql、data.sql 与完整备份，含 9 张表与 12 个外键。</p></div>
+            <b>GitHub →</b>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section class="cta-section">
+      <div class="wrap cta reveal">
+        <div>
+          <h2>从一份课程设计，走到一套完整的内容系统</h2>
+          <p>三端角色、图片入库、审核闭环、SSM 技术实践。</p>
+        </div>
+        <a class="btn primary" href="https://github.com/Bac0nnn/campus-headlines" target="_blank" rel="noopener">打开 GitHub 仓库</a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="wrap footer-inner">
+      <div class="brand footer-brand"><span class="brand-mark">校</span><span class="brand-text">校园头条<small>CAMPUS HEADLINES</small></span></div>
+      <p>俞鑫培 · 122512023064 · 计算机科学与技术 · 2023 级</p>
+      <p>《J2EE 应用开发》课程设计 · 2026—2027 学年第一学期</p>
+    </div>
+  </footer>
+
+  <div class="lightbox" id="lightbox" aria-hidden="true">
+    <button class="lb-close" id="lbClose" aria-label="关闭">×</button>
+    <figure><img id="lbImg" alt="" /><figcaption id="lbCap"></figcaption></figure>
+  </div>
+
+  <script src="site.js"></script>
+</body>
+</html>
